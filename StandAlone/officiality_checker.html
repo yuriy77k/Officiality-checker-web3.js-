@@ -18,11 +18,21 @@
       var web3 = new Web3();
       web3.setProvider(new web3.providers.HttpProvider("https://clo-geth.0xinfra.com/"));
       var Is_official = web3.eth.contract(Is_officialAbi).at(address);
-      
+        
+    function link_normalization (link) {
+      var res = link.toLowerCase();
+      if (!res.endsWith("/"))
+        res=res.concat("/");
+      return res;
+    }
+
     function is_official() {
       document.getElementById('result').style.display = 'none';
       document.getElementById('circularG').style.display = 'block';
       var link=document.getElementById('link').value;
+      
+      //normalization link if needed
+      link = link_normalization (link);
       
       var res = Is_official.is_official(link);
       document.getElementById('circularG').style.display = 'none';
