@@ -2,7 +2,7 @@
 
 To add new tab into ClassicEtherWallet, you need to copy files from the git and add the strings in these files:
 
-## [app/scripts/translations/en.js](https://github.com/EthereumCommonwealth/etherwallet/blob/ae9f7359a39a6a46f33c56772bdcd85b0d58ed6a/app/scripts/translations/en.js#L12)
+## Below this string in the [app/scripts/translations/en.js](https://github.com/EthereumCommonwealth/etherwallet/blob/ae9f7359a39a6a46f33c56772bdcd85b0d58ed6a/app/scripts/translations/en.js#L12)
 
 ```
     /* Officiality Checker tab */
@@ -13,7 +13,7 @@ To add new tab into ClassicEtherWallet, you need to copy files from the git and 
   
 ```
 
-## [app/scripts/services/globalService.js](https://github.com/EthereumCommonwealth/etherwallet/blob/ae9f7359a39a6a46f33c56772bdcd85b0d58ed6a/app/scripts/services/globalService.js#L113)
+## Below this string in the [app/scripts/services/globalService.js](https://github.com/EthereumCommonwealth/etherwallet/blob/ae9f7359a39a6a46f33c56772bdcd85b0d58ed6a/app/scripts/services/globalService.js#L113)
 
 ```
         officialityChecker: {
@@ -25,15 +25,15 @@ To add new tab into ClassicEtherWallet, you need to copy files from the git and 
         },
 ```
 
-## [app/scripts/main.js](https://github.com/EthereumCommonwealth/etherwallet/blob/ae9f7359a39a6a46f33c56772bdcd85b0d58ed6a/app/scripts/main.js#L88)
+## Below this string in the [app/scripts/main.js](https://github.com/EthereumCommonwealth/etherwallet/blob/ae9f7359a39a6a46f33c56772bdcd85b0d58ed6a/app/scripts/main.js#L88)
 
 `var officialityCheckerCtrl = require('./controllers/officialityCheckerCtrl');`
 
-## [app/scripts/main.js](https://github.com/EthereumCommonwealth/etherwallet/blob/ae9f7359a39a6a46f33c56772bdcd85b0d58ed6a/app/scripts/main.js#L170)
+## Below this string in the [app/scripts/main.js](https://github.com/EthereumCommonwealth/etherwallet/blob/ae9f7359a39a6a46f33c56772bdcd85b0d58ed6a/app/scripts/main.js#L170)
 
 `app.controller('officialityCheckerCtrl', ['$scope', officialityCheckerCtrl]);`
 
-## [app/scripts/controllers/tabsCtrl.js](https://github.com/EthereumCommonwealth/etherwallet/blob/ae9f7359a39a6a46f33c56772bdcd85b0d58ed6a/app/scripts/controllers/tabsCtrl.js#L175)
+## Below this string in the [app/scripts/controllers/tabsCtrl.js](https://github.com/EthereumCommonwealth/etherwallet/blob/ae9f7359a39a6a46f33c56772bdcd85b0d58ed6a/app/scripts/controllers/tabsCtrl.js#L175)
 
 ```
         if ($scope.curNode.type === "CLO") $scope.tabNames.officialityChecker.cx = $scope.tabNames.officialityChecker.mew = true;
@@ -41,7 +41,7 @@ To add new tab into ClassicEtherWallet, you need to copy files from the git and 
 
 ```
 
-## [app/layouts/index.html](https://github.com/EthereumCommonwealth/etherwallet/blob/ae9f7359a39a6a46f33c56772bdcd85b0d58ed6a/app/layouts/index.html#L27)
+## Below this string in the [app/layouts/index.html](https://github.com/EthereumCommonwealth/etherwallet/blob/ae9f7359a39a6a46f33c56772bdcd85b0d58ed6a/app/layouts/index.html#L27)
 
 `@@include( '../includes/officialityChecker.tpl', { "site": "cew" } )`
   
