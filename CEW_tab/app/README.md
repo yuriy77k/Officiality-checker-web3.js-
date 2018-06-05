@@ -6,9 +6,11 @@ To add new tab into ClassicEtherWallet, you need to copy files from the git and 
 
 ```
     /* Officiality Checker tab */
-    NAV_OfficialityChecker      : 'Officiality Checker',
+    NAV_OfficialityChecker      : 'Callisto Officiality Checker',
     OC_Check                    : 'Check',
-    OC_Label_1                  : 'Enter link to the media resource:',
+    OC_Label_1                  : 'You check whether a certain media resource is considered "official" at Callisto or not.',
+    OC_Label_2                  : 'Enter link to the media resource:',
+  
 ```
 
 ## [app/scripts/services/globalService.js](https://github.com/EthereumCommonwealth/etherwallet/blob/ae9f7359a39a6a46f33c56772bdcd85b0d58ed6a/app/scripts/services/globalService.js#L113)
