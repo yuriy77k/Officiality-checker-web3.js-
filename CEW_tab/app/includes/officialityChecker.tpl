@@ -10,6 +10,12 @@
         </p>
 
         <section>
+            <!-- IF NOT CLO CHAIN -->
+            <div ng-hide="isCLO()" class="alert alert-danger text-center">
+              <p> The Callisto Officiality Checker is only available on the CLO chains. You are currently on the {{ajaxReq.type}} chain. <br /> Please use the node switcher in the upper right corner to select "CLO". </p>
+            </div>
+            <!-- / IF NOT CLO CHAIN -->            
+
             <div class="block">
 
                 <form ng-submit="handleSubmit()">
