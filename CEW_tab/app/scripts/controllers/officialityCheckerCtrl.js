@@ -11,6 +11,10 @@ var officialityCheckerCtrl = function ($scope) {
         $scope.input.show = 0;
     }
     
+    $scope.isCLO = function () {
+        return ($scope.curNode.type === "CLO");
+    }
+    
     $scope.callback = function (data) {
             $scope.input.step++;
             if (!data.error) {
