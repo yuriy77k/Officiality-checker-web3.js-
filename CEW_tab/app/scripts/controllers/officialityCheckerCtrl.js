@@ -3,45 +3,52 @@ var officialityCheckerCtrl = function ($scope) {
 
     $scope.input = {
         link: "",
-        show: false,
-        res: "checking...",
-        color: "#000000",
+        show: 0,
+        step: 0,
     }
-
-    function link_normalization(link) {
-        var res = link.toLowerCase();
-        if (!res.endsWith("/"))
-            res=res.concat("/");
-        return res;
-    }    
 
     $scope.hide = function () {
-        $scope.input.show = false;
+        $scope.input.show = 0;
+    }
+    
+    $scope.callback = function (data) {
+            $scope.input.step++;
+            if (!data.error) {
+                var res = ethUtil.solidityCoder.decodeParam('bool', data.data.replace('0x', ''));
+                if (!res && $scope.input.step < 2) 
+                    $scope.readContract();
+                else {
+                    if (res) 
+                        $scope.input.show = 2;
+                    else 
+                        $scope.input.show = 3;
+                }
+            }
+            else  
+                $scope.notifier.danger(data.msg);
     }
 
-    $scope.handleSubmit = function () {
-        $scope.input.show = true;
-        $scope.input.res = "checking...";
-        $scope.input.color = "#000000";
-
+    $scope.readContract = function () {
         var address = "0xf6f29e5ba51171c4ef4997bd0208c7e9bc5d5eda";
         var func = "is_official(string)";
-        var value =  link_normalization($scope.input.link);
-        var tx = ethFuncs.sanitizeHex(ethFuncs.getFunctionSignature(func) + ethUtil.solidityCoder.encodeParam("string", value));
+        var link = $scope.input.link;
+        if ($scope.input.step == 1)
+        {
+            if (!link.endsWith("/"))
+                link = link.concat("/");
+            else
+                link = link.slice(0, -1);
+        }
+        var tx = ethFuncs.sanitizeHex(ethFuncs.getFunctionSignature(func) + ethUtil.solidityCoder.encodeParam("string", link));
+        ajaxReq.getEthCall({to: address, data: tx}, $scope.callback);
+    }
 
-        ajaxReq.getEthCall({to: address, data: tx}, function (data) {
-            if (!data.error) {
-                var decoded = ethUtil.solidityCoder.decodeParam('bool', data.data.replace('0x', ''));
-                if (decoded) {
-                    $scope.input.res = "Is official.";
-                    $scope.input.color = "#00cc00";
-                }
-                else {
-                    $scope.input.res = "Is not official!";
-                    $scope.input.color = "#ff0000";
-                }
-            } else  $scope.notifier.danger(data.msg);
-        });
+  
+    $scope.handleSubmit = function () {
+        $scope.input.show = 1;
+        $scope.input.step = 0;
+
+        $scope.readContract();
     }
 
 
