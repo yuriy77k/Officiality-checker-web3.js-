@@ -18,12 +18,9 @@
       var web3 = new Web3();
       web3.setProvider(new web3.providers.HttpProvider("https://clo-geth.0xinfra.com/"));
       var Is_official = web3.eth.contract(Is_officialAbi).at(address);
-        
-    function is_official() {
-      document.getElementById('result').style.display = 'none';
-      document.getElementById('circularG').style.display = 'block';
-      var link=document.getElementById('link').value;
-         
+
+    function check_url(link)
+    {
       var res = Is_official.is_official(link);
       if (!res) {
         if (!link.endsWith("/"))
@@ -32,6 +29,18 @@
           link=link.slice(0, -1);
         res = Is_official.is_official(link);
       }
+      return res;
+    }
+    
+    function is_official() {
+      document.getElementById('result').style.display = 'none';
+      document.getElementById('circularG').style.display = 'block';
+      var link=document.getElementById('link').value;
+      var url = new URL(link);
+      var host = url.protocol + "//" + url.host.match(/\w+\.\w+$/)[0] + url.pathname.match(/^\/\w*\/?/)[0];
+    
+      var res = check_url(link);
+      if (!res) res = check_url(host);
       
       document.getElementById('circularG').style.display = 'none';
       document.getElementById('result').style.display = 'block';
