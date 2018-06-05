@@ -10,6 +10,9 @@ To add new tab into ClassicEtherWallet, you need to copy files from the git and 
     OC_Check                    : 'Check',
     OC_Label_1                  : 'Allows you to check whether a certain media resource is considered "official" at Callisto or not.',
     OC_Label_2                  : 'Enter link to the media resource:',
+    OC_Loading                  : 'loading...',
+    OC_Official                 : 'Is official.',
+    OC_NotOfficial              : 'Is not official!',
   
 ```
 
