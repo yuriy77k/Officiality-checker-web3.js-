@@ -19,28 +19,26 @@
       web3.setProvider(new web3.providers.HttpProvider("https://clo-geth.0xinfra.com/"));
       var Is_official = web3.eth.contract(Is_officialAbi).at(address);
         
-    function link_normalization (link) {
-      var res = link.toLowerCase();
-      if (!res.endsWith("/"))
-        res=res.concat("/");
-      return res;
-    }
-
     function is_official() {
       document.getElementById('result').style.display = 'none';
       document.getElementById('circularG').style.display = 'block';
       var link=document.getElementById('link').value;
-      
-      //normalization link if needed
-      link = link_normalization (link);
-      
+         
       var res = Is_official.is_official(link);
+      if (!res) {
+        if (!link.endsWith("/"))
+          link=link.concat("/");
+        else
+          link=link.slice(0, -1);
+        res = Is_official.is_official(link);
+      }
+      
       document.getElementById('circularG').style.display = 'none';
       document.getElementById('result').style.display = 'block';
       if (res)
-        document.getElementById('result').innerHTML = "<h2><font color='#00cc00'>Is official.</font></h2>"
+        document.getElementById('result').innerHTML = "<h2><font color='#00cc00'>Is official.</font></h2>";
       else
-        document.getElementById('result').innerHTML = "<h2><font color='#ff0000'>Is not official!</font></h2>"
+        document.getElementById('result').innerHTML = "<h2><font color='#ff0000'>Is not official!</font></h2>";
     }
 </script>
 
