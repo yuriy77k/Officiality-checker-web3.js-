@@ -18,8 +18,14 @@
                            ng-change="hide()"
                            class="form-control">
 
-                    <div ng-show="input.show" class="row">
-                        <h2 class="text-center"><font color="{{input.color}}">{{input.res}}</font></h2>
+                    <div ng-show="input.show==1" class="row">
+                        <h2 class="text-center"><font color="#000000" translate="OC_Loading">loading...</font></h2>
+                    </div>
+                    <div ng-show="input.show==2" class="row">
+                        <h2 class="text-center"><font color="#00cc00" translate="OC_Official">Is official.</font></h2>
+                    </div>
+                    <div ng-show="input.show==3" class="row">
+                        <h2 class="text-center"><font color="#ff0000" translate="OC_NotOfficial">Is not official!</font></h2>
                     </div>
 
                     <div class="row row-justify">
