@@ -15,7 +15,7 @@ var officialityCheckerCtrl = function ($scope) {
             $scope.input.step++;
             if (!data.error) {
                 var res = ethUtil.solidityCoder.decodeParam('bool', data.data.replace('0x', ''));
-                if (!res && $scope.input.step < 2) 
+                if (!res && $scope.input.step < 4) 
                     $scope.readContract();
                 else {
                     if (res) 
@@ -32,7 +32,11 @@ var officialityCheckerCtrl = function ($scope) {
         var address = "0xf6f29e5ba51171c4ef4997bd0208c7e9bc5d5eda";
         var func = "is_official(string)";
         var link = $scope.input.link;
-        if ($scope.input.step == 1)
+        if ($scope.input.step >= 2) {
+            var url = new URL(link);
+            link = url.protocol + "//" + url.host.match(/\w+\.\w+$/)[0] + url.pathname.match(/^\/\w*\/?/)[0];
+        }
+        if ($scope.input.step % 2 == 1)
         {
             if (!link.endsWith("/"))
                 link = link.concat("/");
