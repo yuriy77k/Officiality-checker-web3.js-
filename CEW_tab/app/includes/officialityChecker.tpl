@@ -4,16 +4,16 @@
       ng-cloak>
 
     <article>
-        <h1 class="text-center" translate="NAV_OfficialityChecker" aria-live="polite"> Officiality Checker</h1>
+        <h1 class="text-center" translate="NAV_OfficialityChecker" aria-live="polite">Callisto Officiality Checker</h1>
         <p class="text-center" translate="OC_Label_1">
-            Input a link to the media resource into the text field and click the "CHECK" button to perform the check.
+            Allows you to check whether a certain media resource is considered "official" at Callisto or not.
         </p>
 
         <section>
             <div class="block">
 
                 <form ng-submit="handleSubmit()">
-                    <label translate="OC_Label_2">Link to the media resource:</label>
+                    <label translate="OC_Label_2">Enter link to the media resource:</label>
                     <input ng-model="input.link"
                            ng-change="hide()"
                            class="form-control">
